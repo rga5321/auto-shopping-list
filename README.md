@@ -2,7 +2,7 @@
 
 An intelligent bridge between **Google Keep** and **Todoist**, powered by **Google Gemini**.
 
-This project automates the creation of a categorized shopping list by syncing unchecked items from a Google Keep list into a structured Todoist project. It uses an LLM to understand item categories and prevent duplicates.
+This project automates the creation of a categorized shopping list by syncing unchecked items from a Google Keep list into a structured Todoist project. It uses gemini-3.1-flash-lite-preview to understand item categories and prevent duplicates. It's a cheap model, and it's free tier can cover the needs of this project.
 
 As there is not an official Google Keep API for consumers, the script used https://github.com/kiwiz/gkeepapi to interface with Google Keep. Read https://github.com/simon-weber/gpsoauth#alternative-flow to understand how to get the required master token.
 
@@ -16,10 +16,10 @@ As there is not an official Google Keep API for consumers, the script used https
 
 ## Key Features
 
--   **🧠 AI Categorization**: Automatically places items in the right aisle.
--   **🚫 Smart Deduplication**: Won't add "Milk" if "1L Milk" is already on your list.
--   **🛡️ Simulation Mode**: Preview all changes before they happen.
--   **⚡ Performance Tracking**: Displays execution duration and timestamps.
+-   **AI Categorization**: Automatically places items in the right aisle.
+-   **Smart Deduplication**: Won't add "Milk" if "1L Milk" is already on your list.
+-   **Simulation Mode**: Preview all changes before they happen.
+-   **Performance Tracking**: Displays execution duration and timestamps.
 
 ## Configuration
 
