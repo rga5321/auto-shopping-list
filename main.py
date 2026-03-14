@@ -1,11 +1,13 @@
 import sys
+from datetime import datetime
 from config import AppConfig
 from keep_client import KeepClient
 from todoist_client import TodoistClient
 from gemini_client import GeminiClient
 
-def main():
-    print("=== Auto-Shopping-List Orchestrator ===")
+def run():
+    start_time = datetime.now()
+    print(f"=== Auto-Shopping-List Orchestrator started at {start_time.strftime('%Y-%m-%d %H:%M:%S')} ===")
     
     try:
         config = AppConfig()
@@ -35,6 +37,8 @@ def main():
 
     if not keep_items:
         print("\\nAll items are completed in Keep. Nothing to do!")
+        end_time = datetime.now()
+        print(f"=== Auto-Shopping-List Orchestrator ended at {end_time.strftime('%Y-%m-%d %H:%M:%S')} ===")
         sys.exit(0)
 
     print("\\n[*] Fetching Todoist project data...")
@@ -125,5 +129,8 @@ def main():
     else:
         print("\\n[*] SIMULATION COMPLETE: No changes were written to Keep or Todoist.")
 
+    end_time = datetime.now()
+    print(f"=== Auto-Shopping-List Orchestrator ended at {end_time.strftime('%Y-%m-%d %H:%M:%S')} ===")
+
 if __name__ == "__main__":
-    main()
+    run()
