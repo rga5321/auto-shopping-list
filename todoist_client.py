@@ -33,3 +33,22 @@ class TodoistClient:
         if isinstance(json_data, dict) and 'results' in json_data:
             return json_data['results']
         return json_data
+
+    def add_task(self, project_id: str, section_id: str, content: str) -> dict:
+        """
+        Creates a new task in the specified project and section.
+        """
+        url = f"{self.base_url}/tasks"
+        payload = {
+            "project_id": project_id,
+            "content": content
+        }
+        
+        if section_id:
+            payload["section_id"] = section_id
+            
+        response = requests.post(url, headers=self.headers, json=payload)
+        if response.status_code != 200:
+            raise Exception(f"Failed to create task '{content}' in project {project_id}: {response.text}")
+            
+        return response.json()

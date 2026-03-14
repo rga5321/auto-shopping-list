@@ -31,3 +31,27 @@ class KeepClient:
         # Extract only items that are not checked as completed
         unchecked_items = [item.text for item in note.items if not item.checked]
         return unchecked_items
+
+    def mark_items_checked(self, note_id: str, item_names: list[str]):
+        """
+        Takes a list of string item names, finds them in the specified Keep note,
+        and marks them as checked/completed, synchronizing back to Google.
+        """
+        if not item_names:
+            return
+            
+        note = self.keep.get(note_id)
+        if not note or not hasattr(note, 'items'):
+            raise ValueError(f"Note with ID '{note_id}' is not valid for item modification.")
+            
+        # Lowercase search set for loose matching
+        targets = set([i.lower() for i in item_names])
+        modified = False
+        
+        for item in note.items:
+            if not item.checked and item.text.lower() in targets:
+                item.checked = True
+                modified = True
+                
+        if modified:
+            self.keep.sync()
