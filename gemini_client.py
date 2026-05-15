@@ -9,7 +9,7 @@ class GeminiClient:
         """
         self.client = genai.Client(api_key=api_key)
         # Using gemini-1.5-flash which is the fastest and cheapest production model with generous free quotas
-        self.model_name = "gemini-3.1-flash-lite-preview"
+        self.model_name = "gemini-3.1-flash-lite"
 
     def filter_duplicates(self, keep_items: list[str], todoist_tasks: list[dict]) -> dict:
         """
